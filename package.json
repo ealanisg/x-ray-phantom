@@ -1,13 +1,9 @@
 {
-  "name": "x-ray-phantom",
-  "version": "1.0.1",
-  "description": "phantom driver for x-ray",
+  "name": "x-ray-nightmare",
+  "version": "0.0.1",
+  "description": "nightmare driver for x-ray",
   "keywords": [],
-  "author": "Matthew Mueller <matt@lapwinglabs.com>",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/lapwinglabs/x-ray-phantom.git"
-  },
+  "author": "",
   "scripts": {
     "test": "DEBUG=x-ray:phantom mocha test.js -t 10000"
   },

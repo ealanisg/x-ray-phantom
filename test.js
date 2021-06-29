@@ -15,15 +15,12 @@ describe('x-ray-phantom', () => {
   });
 
   it('handles complex examples', async () => {
-    const url = 'https://www.thebodyshop.com/en-ca/';
+    const url = 'https://www.thebodyshop.com/en-ca/sale/h/h00008';
     const scope = '.amp-dc-card-item';
     const fields = [{
-      subHeadline: '.amp-dc-card-item__body-copy-1 h2:nth-child(1)',
-      headline: '.amp-dc-card-item__body-copy-1 h2:nth-child(2)',
-      details: '.amp-dc-card-item__body-copy-1 p:nth-child(3)',
-      legal: '.amp-dc-card-item__body-copy-1 p:nth-child(4)',
+      headline: '.amp-dc-card-item__text-content h3',
+      details: '.amp-dc-card-item__body-copy-1 p',
       learnMoreUrl: 'a@href',
-      imageUrl: 'img@src',
     }];
 
     const output = await awaitCrawl(x(url, scope, fields));

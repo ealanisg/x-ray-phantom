@@ -6,13 +6,15 @@ const Nightmare = require('nightmare');
 function makeDriver(opts) {
   opts = opts || {};
 
-	return function driver(ctx, callback) {
+	return (ctx, callback) => {
 		debug('going to %s', ctx.url);
 
     const nightmare = new Nightmare(opts);
+    this.instance = nightmare;
 
     // Setup standard listeners
     nightmare
+      .useragent(opts.useragent)
       .on('error', (msg) => debug('client-side javascript error %s', msg))
       .on('timeout', (timeout) => callback(new Error(timeout)))
       .on('resourceReceived', (resource) => {
@@ -38,7 +40,7 @@ function makeDriver(opts) {
         debug('%s - %s', ctx.url, ctx.status);
         callback(null, ctx);
       });
-	}
+	};
 }
 
 module.exports = makeDriver;
