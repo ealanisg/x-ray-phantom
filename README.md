@@ -33,7 +33,15 @@ x('http://google.com', 'title')(function(err, str) {
 
 ### driver([options])
 
-Initialize the nightmare driver with `options` being passed direct to Nightmare. Returns an X-Ray driver function with the nightmare instance saved as `fn.instance` property.
+Initialize the nightmare driver. Returns an X-Ray driver function with the nightmare instance saved as `fn.instance` property.
+
+#### Options
+
+`options` arg is passed direct to Nightmare. The following are custom options that configure the driver itself:
+
+##### useragent
+
+Sets a custom User Agent during instance setup via `nightmare.useragent()`.
 
 ## Test
 
