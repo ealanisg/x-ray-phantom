@@ -28,7 +28,11 @@ function makeDriver(opts) {
         ctx.url = url;
       });
     
-    // Get all page content
+    // Basic operation is to get the rendered page content
+    // and return it as the "complete" document.
+    //
+    // X-ray will then use Cheerio on this document, so the same queries & filters
+    // that work with request-based driver will work here (ie. NOT nightmare specific).
     nightmare
       .goto(ctx.url)
       .evaluate(() => {

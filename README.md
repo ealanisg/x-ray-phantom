@@ -1,6 +1,8 @@
 # x-ray-nightmare
 
-  nightmare driver for [x-ray](https://github.com/lapwinglabs/x-ray).
+A modern [nightmare](https://github.com/segmentio/nightmare)-based driver for [x-ray](https://github.com/lapwinglabs/x-ray).
+
+Forked from [x-ray-phantom](https://github.com/lapwinglabs/x-ray-phantom).
 
 ## Installation
 
@@ -10,6 +12,8 @@
 ```
 
 ## Usage
+
+Basic usage should be the same as [request-x-ray](https://github.com/jspri/request-x-ray):
 
 ```js
 var nightmare = require('x-ray-nightmare');
@@ -27,9 +31,9 @@ x('http://google.com', 'title')(function(err, str) {
 
 ## API
 
-### nightmare([options])
+### driver([options])
 
-Initialize the nightmare driver with `options` being passed to Nightmare.
+Initialize the nightmare driver with `options` being passed direct to Nightmare. Returns an X-Ray driver function with the nightmare instance saved as `fn.instance` property.
 
 ## Test
 
