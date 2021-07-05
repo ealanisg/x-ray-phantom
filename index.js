@@ -34,7 +34,6 @@ function makeDriver(opts) {
         const page = await browser.newPage();
         await page.setUserAgent(opts.useragent);
         await page.goto(ctx.url);
-        await page.waitForNavigation();
         const html = await page.evaluate(() => document.documentElement.outerHTML);
         await browser.close();
         return html;
