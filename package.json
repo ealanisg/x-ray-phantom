@@ -9,15 +9,12 @@
   },
   "dependencies": {
     "debug": "^4.3.1",
-    "nightmare": "^3.0.2",
     "normalizeurl": "^1.0.0",
-    "wrap-fn": "^0.1.5"
+    "puppeteer": "^10.1.0"
   },
   "devDependencies": {
     "chai": "^4.3.4",
-    "cheerio": "^1.0.0",
     "mocha": "*",
-    "nightmare-swiftly": "^0.2.4",
     "x-ray": "^2.3.4"
   },
   "main": "index"

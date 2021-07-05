@@ -8,7 +8,7 @@ const x = Xray()
 // Wrapper to help writing async tests
 const awaitCrawl = async (inst) => new Promise((res, err) => inst.then(res).catch(err));
 
-describe('x-ray-phantom', () => {
+describe('x-ray-puppeteer', () => {
   it('correctly crawls sites', async () => {
     const title = await awaitCrawl(x('https://www.thebodyshop.com/en-ca/sale/h/h00008', 'title'));
     expect(title).to.equal('Beauty & Skincare Sale | Makeup Sale | The Body Shop®');
@@ -24,6 +24,6 @@ describe('x-ray-phantom', () => {
     }];
 
     const output = await awaitCrawl(x(url, scope, fields));
-    console.log(output);
+    expect(output).to.deep.equal([]); // No results
   });
 });
