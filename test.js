@@ -5,12 +5,9 @@ const expect = require('chai').expect;
 const x = Xray()
   .driver(driver());
 
-// Wrapper to help writing async tests
-const awaitCrawl = async (inst) => new Promise((res, err) => inst.then(res).catch(err));
-
 describe('x-ray-puppeteer', () => {
   it('correctly crawls sites', async () => {
-    const title = await awaitCrawl(x('https://www.thebodyshop.com/en-ca/sale/h/h00008', 'title'));
+    const title = await x('https://www.thebodyshop.com/en-ca/sale/h/h00008', 'title');
     expect(title).to.equal('Beauty & Skincare Sale | Makeup Sale | The Body Shop®');
   });
 
@@ -23,7 +20,7 @@ describe('x-ray-puppeteer', () => {
       learnMoreUrl: 'a@href',
     }];
 
-    const output = await awaitCrawl(x(url, scope, fields));
+    const output = await x(url, scope, fields);
     expect(output).to.deep.equal([]); // No results
   });
 });
