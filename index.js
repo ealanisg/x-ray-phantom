@@ -28,12 +28,36 @@ function makeDriver(opts) {
     //     ctx.url = url;
     //   });
 
+    const autoScroll = async (page) => {
+      await page.evaluate(async () => {
+        await new Promise((resolve, reject) => {
+          var totalHeight = 0;
+          var distance = 100;
+          var timer = setInterval(() => {
+            var scrollHeight = document.body.scrollHeight;
+            window.scrollBy(0, distance);
+            totalHeight += distance;
+
+            if (totalHeight >= scrollHeight) {
+              clearInterval(timer);
+              resolve();
+            }
+          }, 100);
+        });
+      });
+    };
+
     puppeteer
       .launch()
       .then(async (browser) => {
         const page = await browser.newPage();
         await page.setUserAgent(opts.useragent);
-        await page.goto(ctx.url);
+        await page.goto(ctx.url, { 'timeout': 10000, 'waitUntil': 'domcontentloaded' });
+        await page.setViewport({
+          width: 1200,
+          height: 800
+        });
+        await autoScroll(page);
         const html = await page.evaluate(() => document.documentElement.outerHTML);
         await browser.close();
         return html;

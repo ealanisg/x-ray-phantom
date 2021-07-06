@@ -5,7 +5,7 @@
   "keywords": [],
   "author": "",
   "scripts": {
-    "test": "DEBUG=x-ray:phantom mocha test.js -t 10000"
+    "test": "DEBUG=x-ray:phantom mocha test.js -t 25000"
   },
   "dependencies": {
     "debug": "^4.3.1",

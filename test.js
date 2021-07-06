@@ -8,7 +8,7 @@ const x = Xray()
 describe('x-ray-puppeteer', () => {
   it('correctly crawls sites', async () => {
     const title = await x('https://www.thebodyshop.com/en-ca/sale/h/h00008', 'title');
-    expect(title).to.equal('Beauty & Skincare Sale | Makeup Sale | The Body Shop®');
+    expect(title).to.equal('The Body Shop');
   });
 
   it('handles complex examples', async () => {
@@ -22,5 +22,14 @@ describe('x-ray-puppeteer', () => {
 
     const output = await x(url, scope, fields);
     expect(output).to.deep.equal([]); // No results
+  });
+
+  it('correctly crawls sites using scrolling', async () => {
+    const items = await x('https://www.canadiantire.ca/en/hot-deals.html?adlocation=HP_ASPOT_HotSummerDeals_21327', '.temporary-grid-item', [{
+      product: '.product-tile-srp a@href',
+      headline: 'img@alt',
+      imageUrl: 'img@src',
+    }]);
+    expect(items.length).to.equal(36);
   });
 });
