@@ -19,7 +19,6 @@ describe('x-ray-puppeteer', () => {
       details: '.amp-dc-card-item__body-copy-1 p',
       learnMoreUrl: 'a@href',
     }];
-
     const output = await x(url, scope, fields);
     expect(output).to.deep.equal([]); // No results
   });

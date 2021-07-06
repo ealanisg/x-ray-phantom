@@ -1,15 +1,14 @@
 {
-  "name": "x-ray-nightmare",
+  "name": "x-ray-puppeteer",
   "version": "0.0.1",
-  "description": "nightmare driver for x-ray",
+  "description": "puppeteer driver for x-ray",
   "keywords": [],
   "author": "",
   "scripts": {
-    "test": "DEBUG=x-ray:phantom mocha test.js -t 25000"
+    "test": "DEBUG=x-ray:puppeteer mocha test.js -t 30000"
   },
   "dependencies": {
     "debug": "^4.3.1",
-    "normalizeurl": "^1.0.0",
     "puppeteer": "^10.1.0"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
-# x-ray-nightmare
+# x-ray-puppeteer
 
-A modern [nightmare](https://github.com/segmentio/nightmare)-based driver for [x-ray](https://github.com/lapwinglabs/x-ray).
+A modern [puppeteer](https://github.com/puppeteer/puppeteer)-based driver for [x-ray](https://github.com/lapwinglabs/x-ray).
 
 Forked from [x-ray-phantom](https://github.com/lapwinglabs/x-ray-phantom).
 
@@ -8,7 +8,7 @@ Forked from [x-ray-phantom](https://github.com/lapwinglabs/x-ray-phantom).
 
 ```
 // add to package.json
-"x-ray-nightmare": "github:cayleyh/x-ray-phantom#nightmare",
+"x-ray-puppeteer": "github:ealanisg/x-ray-puppeteer#main",
 ```
 
 ## Usage
@@ -16,11 +16,11 @@ Forked from [x-ray-phantom](https://github.com/lapwinglabs/x-ray-phantom).
 Basic usage should be the same as [request-x-ray](https://github.com/jspri/request-x-ray):
 
 ```js
-var nightmare = require('x-ray-nightmare');
+var puppeteer = require('x-ray-puppeteer');
 var Xray = require('x-ray');
 
 var x = Xray()
-  .driver(nightmare());
+  .driver(puppeteer());
 
 x('http://google.com', 'title')(function(err, str) {
   if (err) return done(err);
@@ -33,15 +33,15 @@ x('http://google.com', 'title')(function(err, str) {
 
 ### driver([options])
 
-Initialize the nightmare driver. Returns an X-Ray driver function with the nightmare instance saved as `fn.instance` property.
+Initialize the puppeteer driver. Returns an X-Ray driver function with the puppeteer instance saved as `fn.instance` property.
 
 #### Options
 
-`options` arg is passed direct to Nightmare. The following are custom options that configure the driver itself:
+`options` arg is passed direct to puppeteer. The following are custom options that configure the driver itself:
 
 ##### useragent
 
-Sets a custom User Agent during instance setup via `nightmare.useragent()`.
+Sets a custom User Agent during instance setup via `page.setUserAgent()` or a default one will be used.
 
 ## Test
 
