@@ -52,7 +52,7 @@ function makeDriver(opts) {
       .then(async (browser) => {
         const page = await browser.newPage();
         await page.setUserAgent(opts.useragent);
-        await page.goto(ctx.url, { 'timeout': 10000, 'waitUntil': 'domcontentloaded' });
+        await page.goto(ctx.url, { 'timeout': 30000, 'waitUntil': 'domcontentloaded' });
         await page.setViewport({
           width: 1200,
           height: 800
