@@ -16,7 +16,7 @@ function makeDriver(opts) {
       let timeout = new Promise((resolve, reject) => {
         timer = setTimeout(() => {
           reject('Timed out');
-        }, 30000)
+        }, 10000)
       })
 
       await Promise.race([
