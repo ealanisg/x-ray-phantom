@@ -8,7 +8,7 @@ const x = Xray()
 describe('x-ray-puppeteer', () => {
   it('correctly crawls sites', async () => {
     const title = await x('https://www.thebodyshop.com/en-ca/sale/h/h00008', 'title');
-    expect(title).to.equal('The Body Shop');
+    expect(title).to.equal('Beauty & Skincare Sale | Makeup Sale | The Body Shop®');
   });
 
   it('handles complex examples', async () => {
@@ -30,5 +30,15 @@ describe('x-ray-puppeteer', () => {
       imageUrl: 'img@src',
     }]);
     expect(items.length).to.equal(36);
+  });
+
+  it('should handle sites with redirections', async () => {
+    const url = 'https://www.yankeecandle.com';
+    const scope = 'body';
+    const fields = {
+      headline: ['h3']
+    };
+    const output = await x(url, scope, fields);
+    expect(Array.isArray(output.headline)).to.equal(true); // results
   });
 });
