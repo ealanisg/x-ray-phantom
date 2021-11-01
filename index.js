@@ -12,6 +12,22 @@ function makeDriver(opts) {
     this.instance = puppeteer;
 
     const autoScroll = async (page) => {
+      let timer;
+      let timeout = new Promise((resolve, reject) => {
+        timer = setTimeout(() => {
+          reject('Timed out');
+        }, 30000)
+      })
+
+      await Promise.race([
+        timeout,
+        page.waitForNavigation()
+      ]).catch(() => {
+        console.log('Timed out while waiting for navigation (handled)')
+      });
+
+      clearTimeout(timer);
+
       await page.evaluate(async () => {
         await new Promise((resolve, reject) => {
           let totalHeight = 0;
@@ -30,13 +46,16 @@ function makeDriver(opts) {
     };
 
     puppeteer
-      .launch()
+      .launch({
+        ignoreHTTPSErrors: true,
+        headless: true
+      })
       .then(async (browser) => {
         const page = await browser.newPage();
         await page.setUserAgent(opts.useragent);
         await page.goto(ctx.url, {
-          timeout: 30000,
-          waitUntil: 'domcontentloaded'
+          timeout: 60000,
+          waitUntil: 'load'
         });
         await page.setViewport({
           width: 1200,

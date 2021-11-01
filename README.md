@@ -8,7 +8,7 @@ Forked from [x-ray-phantom](https://github.com/lapwinglabs/x-ray-phantom).
 
 ```
 // add to package.json
-"x-ray-puppeteer": "github:ealanisg/x-ray-puppeteer#main",
+"x-ray-puppeteer": "git+https://git@github.com/ealanisg/x-ray-puppeteer.git#main",
 ```
 
 ## Usage
