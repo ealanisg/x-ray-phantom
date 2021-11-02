@@ -12,22 +12,7 @@ function makeDriver(opts) {
     this.instance = puppeteer;
 
     const autoScroll = async (page) => {
-      let timer;
-      let timeout = new Promise((resolve, reject) => {
-        timer = setTimeout(() => {
-          reject('Timed out');
-        }, 10000)
-      })
-
-      await Promise.race([
-        timeout,
-        page.waitForNavigation()
-      ]).catch(() => {
-        console.log('Timed out while waiting for navigation (handled)')
-      });
-
-      clearTimeout(timer);
-
+      await page.waitFor(1000);
       await page.evaluate(async () => {
         await new Promise((resolve, reject) => {
           let totalHeight = 0;
