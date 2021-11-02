@@ -39,6 +39,13 @@ describe('x-ray-puppeteer', () => {
       headline: ['h3']
     };
     const output = await x(url, scope, fields);
-    expect(Array.isArray(output.headline)).to.equal(true); // results
+    expect(Array.isArray(output.headline)).to.equal(true);
+  });
+
+  it('should stealth on cloudflare protected sites', async () => {
+    const url = 'https://www.yankeecandle.com';
+    const scope = 'title';
+    const output = await x(url, scope);
+    expect(output.indexOf('Cloudflare')).to.equal(-1);
   });
 });

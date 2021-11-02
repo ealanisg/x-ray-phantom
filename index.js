@@ -1,10 +1,12 @@
 const debug = require('debug')('x-ray:puppeteer');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 
+puppeteer.use(StealthPlugin());
 
 function makeDriver(opts) {
   opts = opts || {};
-  // add default user agent
+  if (!opts.waitForTimeout) opts.waitForTimeout = 5000;
   if (!opts.useragent) opts.useragent = 'x-ray/puppeteer';
 
   return (ctx, callback) => {
@@ -12,7 +14,7 @@ function makeDriver(opts) {
     this.instance = puppeteer;
 
     const autoScroll = async (page) => {
-      await page.waitFor(1000);
+      await page.waitForTimeout(opts.waitForTimeout);
       await page.evaluate(async () => {
         await new Promise((resolve, reject) => {
           let totalHeight = 0;
