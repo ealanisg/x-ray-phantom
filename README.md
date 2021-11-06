@@ -46,8 +46,8 @@ Sets a custom User Agent during instance setup via `page.setUserAgent()` or a de
 ## Test
 
 ```
-npm install
-npm run test
+yarn install
+yarn test
 ```
 
 ## License
