@@ -11,6 +11,17 @@ describe('x-ray-puppeteer', () => {
     expect(title).to.equal('Beauty & Skincare Sale | Makeup Sale | The Body Shop®');
   });
 
+  it('handle browsing errors', async () => {
+    const url = 'https://www.sitethatdoesntexist13246546724657465.com';
+    const scope = 'title';
+    try {
+      await x(url, scope);
+    } catch (e) {
+      expect(e).to.be.instanceOf(Error);
+      expect(e.message).to.eql(`net::ERR_NAME_NOT_RESOLVED at ${url}`);
+    }
+  });
+
   it('handles complex examples', async () => {
     const url = 'https://www.thebodyshop.com/en-ca/sale/h/h00008';
     const scope = '.amp-dc-card-item';

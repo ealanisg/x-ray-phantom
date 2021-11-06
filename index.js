@@ -3,6 +3,7 @@ const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 
 puppeteer.use(StealthPlugin());
+process.setMaxListeners(Infinity); // avoid issue https://github.com/puppeteer/puppeteer/issues/594
 
 function makeDriver(opts) {
   opts = opts || {};
@@ -39,28 +40,33 @@ function makeDriver(opts) {
       })
       .then(async (browser) => {
         const page = await browser.newPage();
-        await page.setUserAgent(opts.useragent);
-        await page.goto(ctx.url, {
-          timeout: 60000,
-          waitUntil: 'load'
-        });
-        await page.setViewport({
-          width: 1200,
-          height: 800
-        });
-        await autoScroll(page);
-        const html = await page.evaluate(() => document.documentElement.outerHTML);
-        await browser.close();
-        return html;
+        try {
+          await page.setUserAgent(opts.useragent);
+          await page.goto(ctx.url, {
+            timeout: 60000,
+            waitUntil: 'load'
+          });
+          await page.setViewport({
+            width: 1200,
+            height: 800
+          });
+          await autoScroll(page);
+          const html = await page.evaluate(() => document.documentElement.outerHTML);
+          return html;
+        } catch (e) {
+          throw e;
+        } finally {
+          await browser.close();
+        }
       })
       .then((body) => {
         ctx.body = body;
         debug('%s - %s', ctx.url, ctx.status);
-        callback(null, ctx);
+        return callback(null, ctx);
       })
       .catch((e) => {
-        console.log('error:', e)
-        return callback;
+        console.error(e)
+        return callback(e);
       })
   };
 }
