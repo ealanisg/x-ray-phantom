@@ -1,6 +1,6 @@
 {
-  "name": "x-ray-puppeteer",
-  "version": "0.0.3",
+  "name": "puppeteer-x-ray-driver",
+  "version": "1.0.0",
   "description": "puppeteer driver for x-ray",
   "keywords": [],
   "author": "",
@@ -14,11 +14,33 @@
     "puppeteer-extra-plugin-stealth": "^2.9.0"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/commit-analyzer": "^9.0.1",
+    "@semantic-release/github": "^8.0.2",
+    "@semantic-release/npm": "^8.0.3",
+    "@semantic-release/release-notes-generator": "^10.0.2",
     "chai": "^4.3.4",
-    "mocha": "^9.1.3",
     "cheerio": "^1.0.0-rc.10",
+    "mocha": "^9.1.3",
+    "semantic-release": "^18.0.0",
     "x-ray": "^2.3.4",
     "x-ray-crawler": "^2.0.5"
+  },
+  "release": {
+    "branch": "main",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/github",
+        {
+          "successComment": false,
+          "failComment": false
+        }
+      ]
+    ]
   },
   "main": "index"
 }
