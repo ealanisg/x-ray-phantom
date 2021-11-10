@@ -27,7 +27,6 @@
     "x-ray-crawler": "^2.0.5"
   },
   "release": {
-    "branch": "main",
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
