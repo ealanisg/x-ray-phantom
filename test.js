@@ -31,7 +31,7 @@ describe('x-ray-puppeteer', () => {
       learnMoreUrl: 'a@href',
     }];
     const output = await x(url, scope, fields);
-    expect(output).to.deep.equal([]); // No results
+    expect(Array.isArray(output)).to.equal(true);
   });
 
   it('correctly crawls sites using scrolling', async () => {
