@@ -11,7 +11,7 @@ describe('x-ray-puppeteer', () => {
     expect(title).to.equal('Beauty & Skincare Sale | Makeup Sale | The Body Shop®');
   });
 
-  it('handle browsing errors', async () => {
+  it('should handle browsing errors', async () => {
     const url = 'https://www.sitethatdoesntexist13246546724657465.com';
     const scope = 'title';
     try {
@@ -55,6 +55,13 @@ describe('x-ray-puppeteer', () => {
 
   it('should stealth on cloudflare protected sites', async () => {
     const url = 'https://www.yankeecandle.com';
+    const scope = 'title';
+    const output = await x(url, scope);
+    expect(output.indexOf('Cloudflare')).to.equal(-1);
+  });
+
+  it('should scrape slow sites', async () => {
+    const url = 'https://www.footlocker.ca/en/';
     const scope = 'title';
     const output = await x(url, scope);
     expect(output.indexOf('Cloudflare')).to.equal(-1);

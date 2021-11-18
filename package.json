@@ -5,7 +5,7 @@
   "keywords": [],
   "author": "",
   "scripts": {
-    "test": "DEBUG=x-ray:puppeteer mocha test.js -t 60000"
+    "test": "DEBUG=x-ray:puppeteer mocha test.js -t 0"
   },
   "dependencies": {
     "debug": "^4.3.1",
