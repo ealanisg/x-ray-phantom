@@ -43,7 +43,7 @@ function makeDriver(opts) {
         try {
           await page.setUserAgent(opts.useragent);
           await page.goto(ctx.url, {
-            timeout: 60000,
+            timeout: 120000,
             waitUntil: 'load'
           });
           await page.setViewport({
